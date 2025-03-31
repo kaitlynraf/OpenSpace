@@ -176,6 +176,26 @@ namespace {
         "as a feathered border rather than a hard corner."
     };
 
+// anchor points
+    constexpr openspace::properties::Property::PropertyInfo ImageAnchorInfo = {
+        "ImageAnchor",
+        "Image Anchor",
+        "Sets the anchor point for the iamge. Determines which part of the image is aligned "
+        "relative to its position",
+         openspace::properties::Property::Visibility::NoviceUser
+    };
+
+    constexpr openspace::properties::Property::PropertyInfo WindowAnchorInfo = {
+        "WindowAnchor",
+        "Window Anchor",
+        "Sets the anchor point for positioning relative to the window. Determines where the "
+        "image is placed within the screen space",
+        openspace::properties::Property::Visibility::NoviceUser
+    };
+
+
+
+
     float wrap(float value, float min, float max) {
         return glm::mod(value - min, max - min) + min;
     }
@@ -311,6 +331,10 @@ ScreenSpaceRenderable::ScreenSpaceRenderable(const ghoul::Dictionary& dictionary
     , _usePerspectiveProjection(UsePerspectiveProjectionInfo, false)
     , _useRadiusAzimuthElevation(UseRadiusAzimuthElevationInfo, false)
     , _faceCamera(FaceCameraInfo, true)
+
+    , _imageAnchor(ImageAnchorInfo)
+    , _windowAnchor(WindowAnchorInfo)
+
     , _cartesianPosition(
         CartesianPositionInfo,
         glm::vec3(0.f, 0.f, -2.f),
@@ -658,6 +682,10 @@ glm::mat4 ScreenSpaceRenderable::translationMatrix() {
 
     return glm::translate(glm::mat4(1.f), translation);
 }
+
+std::vector
+
+
 
 void ScreenSpaceRenderable::draw(const glm::mat4& modelTransform,
                                  const RenderData& renderData,

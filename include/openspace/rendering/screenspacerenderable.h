@@ -149,6 +149,10 @@ protected:
     properties::Vec4Property _backgroundColor;
     properties::TriggerProperty _delete;
 
+    // Anchor points
+    properties::OptionProperty _imageAnchor;
+    properties::OptionProperty _windowAnchor;
+
     glm::ivec2 _objectSize = glm::ivec2(0);
     UniformCache(color, opacity, blackoutFactor, hue, value, saturation, mvpMatrix, tex,
         backgroundColor, gamma, borderColor, borderWidth, borderFeather,
